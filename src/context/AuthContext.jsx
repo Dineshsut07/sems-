@@ -11,6 +11,7 @@ const [currentUser ,setCurrentUser] = useState(JSON.parse(localStorage.getItem("
       const login = async(inputs) =>{
         const res = await axios.post("http://localhost:8080/api/auth/login", inputs );
         setCurrentUser(res.data);
+        console.log(currentUser);
       }
       const logout = async(inputs) =>{
         const res = await axios.post("http://localhost:8080/api/auth/logout");
@@ -18,6 +19,7 @@ const [currentUser ,setCurrentUser] = useState(JSON.parse(localStorage.getItem("
       };
       useEffect(()=>{
         localStorage.setItem("users", JSON.stringify(currentUser));
+        console.log(currentUser);
       },[currentUser]);
 
       return <AuthContext.Provider value={{currentUser, login,logout}}> {children}</AuthContext.Provider>

@@ -8,7 +8,6 @@ const Navbar = () => {
 
   return (
     <>
-      {currentUser ? (
         <div className="navbar">
           <div className="container">
             <div className="logo">
@@ -30,7 +29,6 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      ) : null}
     </>
   );
 }

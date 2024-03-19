@@ -36,7 +36,6 @@ function Pay() {
     const seatCount = countSeats();
     return seatCount * 1000;
   };
-
   return (
     <div className='sevemain'>
       <h2 className='evendes'>Booking id: {bookid}</h2>
@@ -53,5 +52,4 @@ function Pay() {
     </div>
   );
 }
-
 export default Pay;

@@ -38,7 +38,8 @@ function Ticket() {
   };
 
   return (
-    <div className='sevemain'>
+    <div className='sevemain' style={{backgroundColor:'lightpink'}}>
+      <h1 style={{textAlign:'center', }}>Ticket </h1>
       <h2 className='evendes'>Booking id: {bookid}</h2>
       <h2 className='evendes'>Event id: {output.eventid}</h2>
       <h2 className='evendes'>Start time:{output.starttime}</h2>

@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 
 const Book = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [stand, setStand] = useState('');
+  // const [stand, setStand] = useState('');
   const {currentUser} =useContext(AuthContext);
   const [selectedStand, setSelectedStand] = useState('');
   const handleSeatSelection = (seatNumber) => {
@@ -23,32 +23,48 @@ const Book = () => {
 
     const [event ,setevent] = useState(JSON.parse(localStorage.getItem("event")) || null );
     // console.log(event.id)
+    // console.log(currentUser.id);
 
 
-    const handleSubmit = async () => {
+  
+
+    const handleSubmit = async (e) => {
+      // e.preventDefault();
       // Generate a random bookid
+      try {
       const bookid = Math.floor(Math.random() * 1000); // Assuming bookid is a number
       console.log(bookid)
       localStorage.setItem('bookid', bookid);
       // Prepare data for booking
-      const data = {
-        bookid: bookid,
-        stand: selectedStand,
-        seats: selectedSeats.join(","),
-        eventid: event.id,
-        userid:currentUser.id
-      };
-    
-      try {
-        console.log(data);
-        await axios.post('http://localhost:8080/api/book', data);
+      // const data = {
+      //   bookid: bookid,
+      //   stand: selectedStand,
+      //   seats: selectedSeats.join(","),
+      //   eventid: event.id,
+      //   userid:currentUser.id
+      // };
+      //  console.log(data);
+      
+      
+        // console.log(data);
+
+        const res = await axios.post('http://localhost:8080/api/book', {
+          bookid: bookid,
+          stand: selectedStand,
+          seats: selectedSeats.join(","),
+          eventid: event.id,
+          userid :currentUser.id
+        });
         alert('Booking successful');
+        // console.log(" result: " + res );
     
         // Store bookid in localStorage
-        } catch (error) {
-        console.error('Error booking seats:', error);
+      } catch (error) {
+    console.error('Error booking seats:', error);
         alert('Error booking seats');
-      }
+      } 
+      
+      
     };
 
   const renderSeats = () => {
